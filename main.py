@@ -1,5 +1,3 @@
-from socket import fromfd
-
 from onlinerequest import get_all_currencties, convert_currency
 
 # 1. Приветствие
@@ -41,4 +39,4 @@ current_amount = int(input("Введите имеющуюся сумму: "))
 conversion_currency = input("Выберите валюту для конвертации: ")
 
 result = convert_currency(from_currency=conversion_currency, to_currency=user_currency) * current_amount
-print(f"Итого {result}")
+print(f"Итого {round(result, 2)}")

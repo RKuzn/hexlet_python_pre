@@ -26,23 +26,21 @@ print(round(rub, 2))  # 96.12
 
 
 # main functions
-# секция импорт навернху
+# секция импорт наверху
 
 API_KEY = 'fca_live_mL8LwHPBU8Drw0owNOGZ5oIC7TzxEW4nJvrex0xl'
 
 # функция конвертирования
 def convert_currency(from_currency, to_currency):
     # url = f'https://api.freecurrencyapi.com/v1/latest?apikey={API_KEY}&currencies={from_currency}'
-    url = f'https://api.freecurrencyapi.com/v1/latest?apikey={API_KEY}&currencies={from_currency}&base_currency={to_currency}'
+    url = (f'https://api.freecurrencyapi.com/v1/latest?apikey={API_KEY}&currencies={from_currency}'
+           f'&base_currency={to_currency}')
     response = requests.get(url)
     data_info = response.json()
     currency = data_info.get('data', None)
     currency_value = currency.get(from_currency)
     print(f'Стоимость {to_currency} = {currency_value} {from_currency}')
-    return round(currency_value, 2)
-
-
-print(convert_currency(from_currency='RUB', to_currency='EUR'))     # 105.03
+    return currency_value
 
 
 # функция, возвращающая список валют
@@ -54,5 +52,5 @@ def get_all_currencties():
     # print(all_currency_data.get('ZAR'))
     return all_currency_data
 
-print(convert_currency('RUB','EUR'))
-print(convert_currency('EUR','RUB'))
+# print(convert_currency('RUB','EUR'))
+# print(convert_currency('EUR','RUB'))
