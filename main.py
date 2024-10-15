@@ -1,4 +1,5 @@
 from onlinerequest import get_all_currencties, convert_currency
+import sys
 
 # 1. Приветствие
 # 2. Описание функционала
@@ -31,12 +32,25 @@ for currency in ALL_CURRENCIES:
 
 # 4.
 user_currency = input("Введите имеющуюся валюту: ")
+user_currency = user_currency.upper()
+if user_currency not in ALL_CURRENCIES:
+    print("Нормальную валюту вводи, э")
+    sys.exit()
 
 # 5
-current_amount = int(input("Введите имеющуюся сумму: "))
+current_amount = input("Введите имеющуюся сумму: ")
+try:
+    val = float(current_amount)
+except ValueError:
+    print("Нормальную сумму вводи, э")
+    sys.exit()
 
 # 6.
 conversion_currency = input("Выберите валюту для конвертации: ")
+conversion_currency = conversion_currency.upper()
+if conversion_currency not in ALL_CURRENCIES:
+    print("Нормальную валюту вводи, э")
+    sys.exit()
 
-result = convert_currency(from_currency=conversion_currency, to_currency=user_currency) * current_amount
-print(f"Итого {round(result, 2)}")
+result = convert_currency(from_currency=conversion_currency, to_currency=user_currency) * float(current_amount)
+print(f"Итого {round(result, 3)}")
